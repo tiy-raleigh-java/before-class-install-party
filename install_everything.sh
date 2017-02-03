@@ -50,8 +50,6 @@ print () {
 STUDENT_ID=$1
 INSTRUCTOR=$2
 
-echo "STUDENT ID: $STUDENT_ID"
-
 # Greetings!
 print BOLD GREEN_BG "\nWelcome To The Iron Yard!"
 print "This script will automate the install all of the software required for The Iron Yard's Java class. You may be prompted for your password. If so, please type it and press enter. Note that you will not see your password displayed as you type."
