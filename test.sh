@@ -1,3 +1,4 @@
+echo "sdafsdfdsfdsa...."
 echo $@
 echo $1
 echo "Please enter your name:"
