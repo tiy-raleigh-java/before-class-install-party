@@ -1,4 +1,4 @@
+echo "Please enter your name:"
+read USER_NAME
 
-echo $@
-echo $1
-echo $2
+echo "your username: $USER_NAME"
