@@ -571,7 +571,7 @@ if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/ ] ; t
 	print GREEN "External Extensions directory already exists!"
 else
 	# make External Extensions directory
-	mkdir ~/Library/Application\ Support/Google/Chrome/External\ Extensions
+	mkdir -p ~/Library/Application\ Support/Google/Chrome/External\ Extensions
 	
 	if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/ ] ; then
 		print GREEN "External Extensions directory was successfully created!"
@@ -653,7 +653,6 @@ fi
 # todo: automate configuration of github ssh key
 #	get username and password
 #	call rest API?
-# todo: configure testifier config file
 # todo: quicklook filters?? (source code, ????)
 # todo: install maven (see jenv)
 # todo: install gradle (see jenv)
