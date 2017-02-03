@@ -48,6 +48,7 @@ print () {
 
 # read the student id from the command line
 STUDENT_ID=$1
+INSTRUCTOR=$2
 
 echo "STUDENT ID: $STUDENT_ID"
 
@@ -567,7 +568,6 @@ print " - $($BLUE)$($BOLD)Newline Notifier$($RESET) - This is a tool that can be
 print " - $($BLUE)$($BOLD)JSON Formatter$($RESET) - JSON is a common data format. By default, it's not displayed nicely in Chrome. This extension improves how it's displayed."
 print " - $($BLUE)$($BOLD)W3School Hider$($RESET) - This plugin prevents the w3schools website from being displayed in Google search results. The reason this is being blocked is because there are much better and more useful resources available."
 
-
 print "Creating External Extensions directory..."
 if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/ ] ; then
 	print GREEN "External Extensions directory already exists!"
@@ -629,25 +629,26 @@ else
 	fi
 fi
 
-# ##########################################
-# # Create Testifier Configuration
-# ##########################################
-# print PURPLE BOLD "Create Testifier Configuration..."
-# print "Throughout this class we will be writing code and running associated tests. These tests use a custom tool called testifier that reports test results to Doug immediately."
-# 
-# if [ -e ~/.tiy-config ] ; then
-# 	print GREEN "Testifier configuration was already created!"
-# else
-# 	print 
-# 
-# 	if [ -e ~/.tiy-config ] ; then
-# 		print GREEN "Testifier configuration was successfully created!"
-# 	else
-# 		print RED "Testifier configuration was not successfully created!"
-# 		
-# 		exit 1
-# 	fi
-# fi
+##########################################
+# Create Testifier Configuration
+##########################################
+print PURPLE BOLD "Create Testifier Configuration..."
+print "Throughout this class we will be writing code and running associated tests. These tests use a custom tool called testifier that reports test results to Doug immediately."
+
+if [ -e ~/.tiy-config ] ; then
+	print GREEN "Testifier configuration was already created!"
+else
+	# output the .tiy-config for testifier's test runner
+	echo "{ instructor: '$INSTRUCTOR', studentId: $STUDENT_ID }" > ~/.tiy-config
+
+	if [ -e ~/.tiy-config ] ; then
+		print GREEN "Testifier configuration was successfully created!"
+	else
+		print RED "Testifier configuration was not successfully created!"
+		
+		exit 1
+	fi
+fi
 
 
 
