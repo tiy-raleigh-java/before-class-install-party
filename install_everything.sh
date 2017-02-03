@@ -46,6 +46,11 @@ print () {
 	$RESET
 }
 
+# read the student id from the command line
+STUDENT_ID=$1
+
+echo "STUDENT ID: $STUDENT_ID"
+
 # Greetings!
 print BOLD GREEN_BG "\nWelcome To The Iron Yard!"
 print "This script will automate the install all of the software required for The Iron Yard's Java class. You may be prompted for your password. If so, please type it and press enter. Note that you will not see your password displayed as you type."
@@ -558,9 +563,9 @@ fi
 ##########################################
 print PURPLE BOLD "Install Chrome extensions..."
 print "This script will install three useful extensions into Chrome:"
-print " * $($BLUE)$($BOLD)Newline Notifier$($RESET) - This is a tool that can be used to report to Doug exactly how you are feeling in class right now."
-print " * $($BLUE)$($BOLD)JSON Formatter$($RESET) - JSON is a common data format. By default, it's not displayed nicely in Chrome. This extension improves how it's displayed."
-print " * $($BLUE)$($BOLD)W3School Hider$($RESET) - This plugin prevents the w3schools website from being displayed in Google search results. The reason this is being blocked is because there are much better and more useful resources available."
+print " - $($BLUE)$($BOLD)Newline Notifier$($RESET) - This is a tool that can be used to report to Doug exactly how you are feeling in class right now."
+print " - $($BLUE)$($BOLD)JSON Formatter$($RESET) - JSON is a common data format. By default, it's not displayed nicely in Chrome. This extension improves how it's displayed."
+print " - $($BLUE)$($BOLD)W3School Hider$($RESET) - This plugin prevents the w3schools website from being displayed in Google search results. The reason this is being blocked is because there are much better and more useful resources available."
 
 
 print "Creating External Extensions directory..."
@@ -624,23 +629,27 @@ else
 	fi
 fi
 
-##########################################
-# Create Testifier Configuration
-##########################################
-print PURPLE BOLD "Create Testifier Configuration..."
-print "Throughout this class we will be writing code and running associated tests. These tests use a custom tool called testifier that reports test results to Doug immediately."
+# ##########################################
+# # Create Testifier Configuration
+# ##########################################
+# print PURPLE BOLD "Create Testifier Configuration..."
+# print "Throughout this class we will be writing code and running associated tests. These tests use a custom tool called testifier that reports test results to Doug immediately."
+# 
+# if [ -e ~/.tiy-config ] ; then
+# 	print GREEN "Testifier configuration was already created!"
+# else
+# 	print 
+# 
+# 	if [ -e ~/.tiy-config ] ; then
+# 		print GREEN "Testifier configuration was successfully created!"
+# 	else
+# 		print RED "Testifier configuration was not successfully created!"
+# 		
+# 		exit 1
+# 	fi
+# fi
 
-if [ -e ~/.tiy-config ] ; then
-	echo GREEN "Testifier configuration was already created!"
-else
-	if [ -e ~/.tiy-config ] ; then
-		echo GREEN "Testifier configuration was successfully created!"
-	else
-		echo RED "Testifier configuration was not successfully created!"
-		
-		exit 1
-	fi
-fi
+
 
 # todo: automate configuration of github ssh key
 #	get username and password
