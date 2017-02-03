@@ -567,13 +567,13 @@ print " - $($BLUE)$($BOLD)JSON Formatter$($RESET) - JSON is a common data format
 print " - $($BLUE)$($BOLD)W3School Hider$($RESET) - This plugin prevents the w3schools website from being displayed in Google search results. The reason this is being blocked is because there are much better and more useful resources available."
 
 print "Creating External Extensions directory..."
-if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/ ] ; then
+if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions ] ; then
 	print GREEN "External Extensions directory already exists!"
 else
 	# make External Extensions directory
 	mkdir -p ~/Library/Application\ Support/Google/Chrome/External\ Extensions
 	
-	if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/ ] ; then
+	if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions ] ; then
 		print GREEN "External Extensions directory was successfully created!"
 	else
 		print RED "External Extensions directory was not successfully created!"
