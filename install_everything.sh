@@ -662,14 +662,7 @@ read GITHUB_USERNAME
 print "Please enter your github password:"
 read GITHUB_PASSWORD
 
-print "Temporarily disabling command history..."
-set +o history
-
-echo "sfdlkdfsalkfsadjlfsj sfdlkdfsalkfsadjlfsj sfdlkdfsalkfsadjlfsj sfdlkdfsalkfsadjlfsj"
-
-print "Re-enabling command history..."
-set -o history
-
+curl -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys
 
 
 
