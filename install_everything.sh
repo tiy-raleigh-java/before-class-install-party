@@ -660,7 +660,7 @@ read GITHUB_USERNAME
 
 # prompt for user's github password
 print "Please enter your github password:"
-read GITHUB_PASSWORD
+read -s GITHUB_PASSWORD
 
 curl -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys
 
