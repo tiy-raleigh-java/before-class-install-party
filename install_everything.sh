@@ -1,24 +1,5 @@
 # mac setup script for Java class
 
-## Define some colors we can use below
-#RED='\033[0;31m'
-#GREEN='\033[0;32m'
-#ORANGE='\033[0;33m'
-#BLUE='\033[0;34m'
-#PURPLE='\033[0;35m'
-#CYAN='\033[0;36m'
-#LIGHT_GRAY='\033[0;37m'
-#DARK_GRAY='\033[1;30m'
-#LIGHT_RED='\033[1;31m'
-#LIGHT_GREEN='\033[1;32m'
-#YELLOW='\033[1;33m'
-#LIGHT_BLUE='\033[1;34m'
-#LIGHT_PURPLE='\033[1;35m'
-#LIGHT_CYAN='\033[1;36m'
-#WHITE='\033[1;37m'
-## No Color
-#NC='\033[0m'
-
 BOLD="tput bold"
 RED="tput setaf 1"
 GREEN="tput setaf 2"
@@ -694,9 +675,10 @@ else
 	# add the user's SSH key to github
 	curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" -H "Content-Type: application/json" -d "{\"title\": \"TIY-Configured SSH Key\", \"key\": \"$USER_KEY\"}" -X POST https://api.github.com/user/keys
 	
-	# list the user's ssh keys
-	GITHUB_KEYS=`curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys`
+	# get the user's ssh keys to github to make sure it was setup correctly
+	GITHUB_KEYS=`curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys` > /dev/null
 
+	# double check that everything was setup correctly
 	if [[ "$GITHUB_KEYS" == *"$USER_KEY"* ]] ; then 
 		print GREEN "Github was successfully configured with your SSH key!"
 	else
@@ -707,15 +689,6 @@ else
 
 fi
 
+print BOLD GREEN_BG "\nSoftware installation and configuration was successfully completed!"
 
-
-
-
-
-
-# todo: automate configuration of github ssh key
-#	get username and password
-#	call rest API?
-# todo: quicklook filters?? (source code, ????)
-# todo: install maven (see jenv)
-# todo: install gradle (see jenv)
+print "Welcome to The Iron Yard!"
