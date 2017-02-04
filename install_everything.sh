@@ -691,7 +691,7 @@ if [[ "$GITHUB_KEYS" == *"$USER_KEY"* ]] ; then
 else
 	
 	# add the user's SSH key to github
-	echo "add the user's SSH key to github...."
+	curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" -H "Content-Type: application/json" -d "{'title': 'TIY Generated SSH Key', 'key': '$USER_KEY'}" -X POST https://api.github.com/user/keys
 	
 	# list the user's ssh keys
 	GITHUB_KEYS=`curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys`
