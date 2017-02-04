@@ -677,7 +677,7 @@ while [ "$GITHUB_VALIDATED" -ne "0" ] ; do
 	fi
 done
 
-echo "all good."
+echo "all good xxxxxx."
 
 
 
