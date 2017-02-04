@@ -652,10 +652,12 @@ fi
 # Configure Github SSH key
 ##########################################
 print PURPLE BOLD "Configure Github SSH Key..."
-print "We need to configure SSH to recognize the SSH key we generated. Using SSH will keep you from having to enter your Github password repeatedly."
+print "We need to configure Github to recognize the SSH key we generated. Using SSH will keep you from having to enter your Github password repeatedly."
 
+# this will indicate whether or not we've collected the students's github info successfully
 GITHUB_VALIDATED=-1
 
+# loop until we collect the student's github username and password successfully
 while [ "$GITHUB_VALIDATED" -ne "0" ] ; do
 	# prompt for user's github username
 	print "Please enter your github username:"
@@ -676,7 +678,33 @@ while [ "$GITHUB_VALIDATED" -ne "0" ] ; do
 	fi
 done
 
-echo "all good $GITHUB_USERNAME $GITHUB_PASSWORD"
+# read the user's public key
+USER_KEY=`cat ~/.ssh/id_rsa.pub`
+USER_KEY=${USER_KEY% *}
+
+# list the user's ssh keys
+GITHUB_KEYS=`curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys`
+
+# is this key represented in the github keys
+if [[ "$GITHUB_KEYS" == *"$USER_KEY"* ]] ; then 
+	print GREEN "Github is already configured with your SSH key!"
+else
+	
+	# add the user's SSH key to github
+	echo "add the user's SSH key to github...."
+	
+	# list the user's ssh keys
+	GITHUB_KEYS=`curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys`
+
+	if [[ "$GITHUB_KEYS" == *"$USER_KEY"* ]] ; then 
+		print GREEN "Github was successfully configured with your SSH key!"
+	else
+		print RED "Github was not successfully configured with your SSH key!"
+	
+		exit 1
+	fi
+
+fi
 
 
 
