@@ -654,15 +654,34 @@ fi
 print PURPLE BOLD "Configure Github SSH Key..."
 print "We need to configure SSH to recognize the SSH key we generated. Using SSH will keep you from having to enter your Github password repeatedly."
 
-# prompt for user's github username
-print "Please enter your github username:"
-read GITHUB_USERNAME
+GITHUB_VALIDATED=-1
 
-# prompt for user's github password
-print "Please enter your github password:"
-read -s GITHUB_PASSWORD
+while [ "$GITHUB_VALIDATED" -ne "0" ] ; do
+	# prompt for user's github username
+	print "Please enter your github username:"
+	read GITHUB_USERNAME
 
-curl -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys
+	# prompt for user's github password
+	print "Please enter your github password:"
+	read -s GITHUB_PASSWORD
+	
+	# test the username and password
+	curl -u -f "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys > /dev/null
+
+	# indicate whether or not github is validated
+	GITHUB_VALIDATED=$?
+	
+	if [ "$GITHUB_VALIDATED" -ne "0" ] ; then
+		print RED "Your Github username and password could not be validated. Please try again. If you haven't already opened a Github account you can pause here and create an account before continuing."
+	fi
+done
+
+echo "all good."
+
+
+
+
+
 
 
 
