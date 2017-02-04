@@ -689,6 +689,7 @@ GITHUB_KEYS=`curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.githu
 if [[ "$GITHUB_KEYS" == *"$USER_KEY"* ]] ; then 
 	print GREEN "Github is already configured with your SSH key!"
 else
+	print "Adding SSH key to Github..."
 	
 	# add the user's SSH key to github
 	curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" -H "Content-Type: application/json" -d "{'title': 'TIY Generated SSH Key', 'key': '$USER_KEY'}" -X POST https://api.github.com/user/keys
