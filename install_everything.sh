@@ -666,6 +666,7 @@ while [ "$GITHUB_VALIDATED" -ne "0" ] ; do
 	read -s GITHUB_PASSWORD
 	
 	# test the username and password
+	echo "curl -s -f -u" "$GITHUB_USERNAME:$GITHUB_PASSWORD" "https://api.github.com/user/keys > /dev/null"
 	curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys > /dev/null
 
 	# indicate whether or not github is validated
