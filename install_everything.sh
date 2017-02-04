@@ -673,10 +673,10 @@ else
 	print "Adding SSH key to Github..."
 	
 	# add the user's SSH key to github
-	curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" -H "Content-Type: application/json" -d "{\"title\": \"TIY-Configured SSH Key\", \"key\": \"$USER_KEY\"}" -X POST https://api.github.com/user/keys
+	curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" -H "Content-Type: application/json" -d "{\"title\": \"TIY-Configured SSH Key\", \"key\": \"$USER_KEY\"}" -X POST https://api.github.com/user/keys > /dev/null
 	
 	# get the user's ssh keys to github to make sure it was setup correctly
-	GITHUB_KEYS=`curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys` > /dev/null
+	GITHUB_KEYS=`curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys` 
 
 	# double check that everything was setup correctly
 	if [[ "$GITHUB_KEYS" == *"$USER_KEY"* ]] ; then 
