@@ -689,6 +689,6 @@ else
 
 fi
 
-print BOLD GREEN_BG "\nSoftware installation and configuration was successfully completed!"
+print BOLD GREEN "\nSoftware installation and configuration was successfully completed!"
 
 print "Welcome to The Iron Yard!"
