@@ -689,6 +689,30 @@ else
 
 fi
 
+##########################################
+# Create Projects directory
+##########################################
+print PURPLE BOLD "Create Projects directory..."
+print "We need a place to keep the files we'll create for projects in this class. This will be the Projects directory that will be created in our home directory."
+
+if [ -e ~/Projects ] ; then
+	print GREEN "Projects directory already exists!"
+else
+	# make the directory
+	mkdir ~/Projects
+
+	if [ -e ~/Projects ] ; then
+		print GREEN "Projects directory was successfully created!"
+	else
+		print RED "Projects directory was not successfully created!"
+		
+		exit 1
+	fi
+fi
+
+##########################################
+# Done!
+##########################################
 print BOLD GREEN "\nSoftware installation and configuration was successfully completed!"
 
 print "Welcome to The Iron Yard!"
