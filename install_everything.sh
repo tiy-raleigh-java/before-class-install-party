@@ -692,7 +692,7 @@ else
 	print "Adding SSH key to Github..."
 	
 	# add the user's SSH key to github
-	curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" -H "Content-Type: application/json" -d "{'title': 'TIY Generated SSH Key', 'key': '$USER_KEY'}" -X POST https://api.github.com/user/keys
+	curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" -H "Content-Type: application/json" -d "{\"title\": \"TIY-Configured SSH Key\", \"key\": \"$USER_KEY\"}" -X POST https://api.github.com/user/keys
 	
 	# list the user's ssh keys
 	GITHUB_KEYS=`curl -s -f -u "$GITHUB_USERNAME:$GITHUB_PASSWORD" https://api.github.com/user/keys`
@@ -706,10 +706,6 @@ else
 	fi
 
 fi
-
-
-
-
 
 
 
