@@ -483,7 +483,7 @@ if git config  -l | grep user.name= > /dev/null ; then
 	print GREEN "Git user's name is already configured"
 else
 	# prompt for user's name
-	print "Please enter your name:"
+	print "Please enter your full name:"
 	read USER_NAME
 	
 	# configure the user's name
