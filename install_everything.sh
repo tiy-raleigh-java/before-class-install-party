@@ -212,7 +212,7 @@ fi
 print PURPLE BOLD "Installing jenv..."
 print "Java 9 will try to become the default Java on your computer. The jenv program will enable us to switch between Java versions, but use Java 8 as the default."
 
-if which jenv ; then
+if which jenv > /dev/null ; then
 	print GREEN "jenv is already installed!"
 else 
 	# install jenv
@@ -225,7 +225,7 @@ else
 	source ~/.bash_profile
 	
 	# confirm jenv is now installed
-	if which jenv ; then
+	if which jenv > /dev/null ; then
 		print GREEN "jenv was successfully installed!"
 	else 
 		print RED "jenv was not successfully installed!"
@@ -647,6 +647,32 @@ else
 		exit 1
 	fi
 fi
+
+##########################################
+# Configure Github SSH key
+##########################################
+print PURPLE BOLD "Configure Github SSH Key..."
+print "We need to configure SSH to recognize the SSH key we generated. Using SSH will keep you from having to enter your Github password repeatedly."
+
+# prompt for user's github username
+print "Please enter your github username:"
+read GITHUB_USERNAME
+
+# prompt for user's github password
+print "Please enter your github password:"
+read GITHUB_PASSWORD
+
+print "Temporarily disabling command history..."
+set +o history
+
+echo "sfdlkdfsalkfsadjlfsj sfdlkdfsalkfsadjlfsj sfdlkdfsalkfsadjlfsj sfdlkdfsalkfsadjlfsj"
+
+print "Re-enabling command history..."
+set -o history
+
+
+
+
 
 
 
