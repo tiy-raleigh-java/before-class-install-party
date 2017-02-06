@@ -93,7 +93,7 @@ if [ -e /usr/local/bin/brew ]; then
 	print GREEN "Homebrew is already installed!"
 else
 	# install homebrew
-	echo "\n" /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	yes "\n" | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	
 	# confirm homebrew is now installed
 	if [ -e /usr/local/bin/brew ]; then
