@@ -377,7 +377,7 @@ if [ -e ~/Library/Application\ Support/IntelliJIdea2016.3 ] ; then
 else 
 	# download config settings
 	print "Downloading configuration settings..."
-	curl -s -o ~/IntelliJ_Config.zip https://github.com/tiy-raleigh-java/before-class-install-party/raw/master/IntelliJ_Config.zip
+	curl -s -o ~/IntelliJ_Config.zip https://raw.githubusercontent.com/tiy-raleigh-java/before-class-install-party/master/IntelliJ_Config.zip
 	
 	# unzip the config settings
 	print "Extract configuration settings..."
