@@ -370,14 +370,14 @@ fi
 # Configure IntelliJ
 ##########################################
 print PURPLE BOLD "Configuring IntelliJ IDEA Ultimate..."
-print "To save time, we'll automatically configure some parts of IntelliJ. This script choses most of the default options, but installes a plugin for Node.js, turns on color blind features, sets up the default JDK, and more."
+print "To save time, we'll automatically configure some parts of IntelliJ. This script choses most of the default options, but installs a plugin for Node.js, turns on color blind features, sets up the default JDK, and more."
 
 if [ -e ~/Library/Application\ Support/IntelliJIdea2016.3 ] ; then
 	print GREEN "IntelliJ is already configured."
 else 
 	# download config settings
 	print "Downloading configuration settings..."
-	curl -s -o ~/IntelliJ_Config.zip https://tiy-learn-content.s3.amazonaws.com/1b6dcf71-IntelliJ_Config.zip
+	curl -s -o ~/IntelliJ_Config.zip https://github.com/tiy-raleigh-java/before-class-install-party/raw/master/IntelliJ_Config.zip
 	
 	# unzip the config settings
 	print "Extract configuration settings..."
