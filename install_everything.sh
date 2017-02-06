@@ -230,6 +230,11 @@ do
 		
 		print "Checking to see if JDK $JAVA_VERSION is configured in jenv..."
 		
+		jenv versions
+		
+		sleep 1
+		echo
+		
 		# is this version of java added to jenv?
 		if jenv versions | grep $JAVA_VERSION > /dev/null ; then
 			print GREEN "JDK $JAVA_VERSION is configured in jenv!"
