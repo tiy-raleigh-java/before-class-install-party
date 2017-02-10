@@ -542,10 +542,10 @@ fi
 # Install Chrome extensions
 ##########################################
 print PURPLE BOLD "Install Chrome extensions..."
-print "This script will install three useful extensions into Chrome:"
+print "This script will install some useful extensions into Chrome:"
 print " - $($BLUE)$($BOLD)Newline Notifier$($RESET) - This is a tool that can be used to report to Doug exactly how you are feeling in class right now."
 print " - $($BLUE)$($BOLD)JSON Formatter$($RESET) - JSON is a common data format. By default, it's not displayed nicely in Chrome. This extension improves how it's displayed."
-print " - $($BLUE)$($BOLD)W3School Hider$($RESET) - This plugin prevents the w3schools website from being displayed in Google search results. The reason this is being blocked is because there are much better and more useful resources available."
+#print " - $($BLUE)$($BOLD)W3School Hider$($RESET) - This plugin prevents the w3schools website from being displayed in Google search results. The reason this is being blocked is because there are much better and more useful resources available."
 
 print "Creating External Extensions directory..."
 if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions ] ; then
@@ -593,20 +593,20 @@ else
 	fi
 fi
 
-print "W3School Hider..."
-if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/cbifdjebjnindebojlhccdccmgfgccdo.json ] ; then
-	print GREEN "W3School Hider is already installed!"
-else
-	echo '{"external_update_url": "https://clients2.google.com/service/update2/crx"}' > ~/Library/Application\ Support/Google/Chrome/External\ Extensions/cbifdjebjnindebojlhccdccmgfgccdo.json
-	
-	if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/cbifdjebjnindebojlhccdccmgfgccdo.json ] ; then
-		print GREEN "W3School Hider was successfully installed!"
-	else
-		print RED "W3School Hider was not successfully installed!"
-		
-		exit 1
-	fi
-fi
+#print "W3School Hider..."
+#if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/cbifdjebjnindebojlhccdccmgfgccdo.json ] ; then
+#	print GREEN "W3School Hider is already installed!"
+#else
+#	echo '{"external_update_url": "https://clients2.google.com/service/update2/crx"}' > ~/Library/Application\ Support/Google/Chrome/External\ Extensions/cbifdjebjnindebojlhccdccmgfgccdo.json
+#	
+#	if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/cbifdjebjnindebojlhccdccmgfgccdo.json ] ; then
+#		print GREEN "W3School Hider was successfully installed!"
+#	else
+#		print RED "W3School Hider was not successfully installed!"
+#		
+#		exit 1
+#	fi
+#fi
 
 ##########################################
 # Create Testifier Configuration
