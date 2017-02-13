@@ -366,6 +366,29 @@ else
 fi
 
 ##########################################
+# Configure Postgres tools
+##########################################
+print PURPLE BOLD "Configuring Postgres tools..."
+print "Postgres itself comes with a few useful tools that Postgres.app doesn't automatically make available to you. We'll configure those now."
+
+# check if Postgres.app is found in the .bash_profile file (this tells us it's likely on the path)
+if cat ~/.bash_profile | grep Postgres.app > /dev/null; then
+	print GREEN "Postgress tools are already configured!"
+else 
+	# add the postgres bin directory to the path
+	echo -e 'export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin' >> ~/.bash_profile
+	
+	# confirm postgres tools rea now configured
+	if cat ~/.bash_profile | grep Postgres.app > /dev/null; then
+		print GREEN "Postgres tools were successfully configured!"
+	else 
+		print RED "Postgres tools were NOT successfully configured!"
+		
+		exit 1
+	fi
+fi
+
+##########################################
 # Install IntelliJ IDEA Ultimate
 ##########################################
 print PURPLE BOLD "Installing IntelliJ IDEA Ultimate..."
