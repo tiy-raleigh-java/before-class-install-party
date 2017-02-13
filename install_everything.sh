@@ -343,6 +343,29 @@ else
 fi
 
 ##########################################
+# Install Postgres.app
+##########################################
+print PURPLE BOLD "Installing Postgres.app..."
+print "PostgreSQL is an open source relational database. It is used to store and retrieve structured data. Postgres.app is the simplest way to get started with Postgres."
+
+# check if postgres.app is already installed
+if [ -e "/Applications/Postgres.app" ]; then
+	print GREEN "Postgres.app is already installed!"
+else 
+	# install postgres.app
+	brew install Caskroom/cask/postgres
+	
+	# confirm postgres.app is now installed
+	if [ -e "/Applications/Postgres.app" ]; then
+		print GREEN "Postgres.app was successfully installed!"
+	else 
+		print RED "Postgres.app was not successfully installed!"
+		
+		exit 1
+	fi
+fi
+
+##########################################
 # Install IntelliJ IDEA Ultimate
 ##########################################
 print PURPLE BOLD "Installing IntelliJ IDEA Ultimate..."
