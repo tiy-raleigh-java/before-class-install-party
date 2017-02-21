@@ -148,14 +148,14 @@ fi
 print PURPLE BOLD "Installing Java Development Kit 8..."
 print "The Java Development Kit (JDK) is what turns the code you write into something the Java Runtime Environment (JRE) can actually execute on your computer. IE: It makes the magic work."
 
-if ls /Library/Java/JavaVirtualMachines/ | grep jdk1.8 > /dev/null ; then
+if ls /Library/Java/JavaVirtualMachines/ | grep jdk1.8.0_121 > /dev/null ; then
 	print GREEN "Java 8 is already installed!"
 else 
 	# install jdk 8
 	brew cask install java
 	
 	# confirm java 8 is now installed
-	if ls /Library/Java/JavaVirtualMachines/ | grep jdk1.8 > /dev/null ; then
+	if ls /Library/Java/JavaVirtualMachines/ | grep jdk1.8.0_121 > /dev/null ; then
 		print GREEN "Java Development Kit 8 was successfully installed!"
 	else 
 		print RED "Java Development Kit 8 was not successfully installed!"
