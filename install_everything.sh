@@ -43,7 +43,7 @@ print PURPLE BOLD "Installing the Xcode Command Line Tools...\n"
 print "The Xcode Command Line Tools allow programmers to do command line development. We will be using some of these tools in class."
 
 # check if xcode cli tools are installed
-if ! xcode-select -p 2>&1 | grep CommandLineTools > /dev/null || ! xcode-select -p 2>&1 | grep Applications > /dev/null ; then
+if ! [ xcode-select -p 2>&1 | grep CommandLineTools > /dev/null || xcode-select -p 2>&1 | grep Applications > /dev/null ] ; then
 	# xcode cli tools are not installed
 	print "Unfortunately, we can't automate the install of the Xcode Command Line Tools for you! This script will open a dialog that reads:"
 
@@ -70,7 +70,7 @@ if ! xcode-select -p 2>&1 | grep CommandLineTools > /dev/null || ! xcode-select 
 	done
 	
 	# double check that the Xcode CLI tools were successfully installed
-	if ! xcode-select -p 2>&1 | grep CommandLineTools > /dev/null || ! xcode-select -p 2>&1 | grep Applications > /dev/null ; then
+	if ! [ xcode-select -p 2>&1 | grep CommandLineTools > /dev/null || xcode-select -p 2>&1 | grep Applications > /dev/null ] ; then
  		# the install failed
 	 	print RED "Xcode Command Line Tools were not successfully installed!!"
  		
