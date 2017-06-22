@@ -182,6 +182,27 @@ else
 	fi
 fi
 
+##########################################
+# Install Slack
+##########################################
+print PURPLE BOLD "Installing Slack..."
+print "Slack brings all your communication together in one place. It's real-time messaging, archiving and search for modern teams."
+
+# check if chrome is already installed
+if [ -e "/Applications/Slack.app" ]; then
+	print GREEN "Slack is already installed!"
+else
+	brew cask install atom
+
+	# confirm atom is now installed
+	if [ -e "/Applications/Slack.app" ]; then
+		print GREEN "Slack was successfully installed!"
+	else
+		print RED "Slack was not successfully installed!"
+
+		exit 1
+	fi
+fi
 
 ##########################################
 # Create an SSH key
