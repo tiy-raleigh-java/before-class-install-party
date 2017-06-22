@@ -446,14 +446,14 @@ fi
 
 print "Newline Powertools..."
 if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/jkofmljfahlllnhdikffdoignjodkplo.json ] ; then
-	print GREEN "JSON Formatter is already installed!"
+	print GREEN "Newline Powertools is already installed!"
 else
 	echo '{"external_update_url": "https://clients2.google.com/service/update2/crx"}' > ~/Library/Application\ Support/Google/Chrome/External\ Extensions/jkofmljfahlllnhdikffdoignjodkplo.json
 
 	if [ -e ~/Library/Application\ Support/Google/Chrome/External\ Extensions/jkofmljfahlllnhdikffdoignjodkplo.json ] ; then
-		print GREEN "JSON Formatter was successfully installed!"
+		print GREEN "Newline Powertools was successfully installed!"
 	else
-		print RED "JSON Formatter was not successfully installed!"
+		print RED "Newline Powertools was not successfully installed!"
 
 		exit 1
 	fi
