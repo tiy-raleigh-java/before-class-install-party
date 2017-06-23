@@ -167,9 +167,17 @@ print PURPLE BOLD "Installing Atom..."
 print "Atom is a 'hackable' text editor. We will be using Atom to write code. This also configures the apm and atom command line programs."
 
 # check if chrome is already installed
-if [ -e "/Applications/Atom.app" ]; then
+if [ -e "/Applications/Atom.app" ] && [ -e "/usr/local/bin/apm" ] && [ -e "/usr/local/bin/atom" ] ; then
 	print GREEN "Atom is already installed!"
 else
+	if [ -e "/Applications/Atom.app" ] ; then
+		print "Atom is already installed, but not its command line tools. Atom will be uninstalled and reinstalled to enable its command line tools. This will not delete or change any of your settings or installed packages."
+
+		# delete atom
+		rm -fr /Applications/Atom.app
+	fi
+
+	# install atom
 	brew cask install atom
 
 	# confirm atom is now installed
@@ -192,9 +200,9 @@ print "Slack brings all your communication together in one place. It's real-time
 if [ -e "/Applications/Slack.app" ]; then
 	print GREEN "Slack is already installed!"
 else
-	brew cask install atom
+	brew cask install slack
 
-	# confirm atom is now installed
+	# confirm slack is now installed
 	if [ -e "/Applications/Slack.app" ]; then
 		print GREEN "Slack was successfully installed!"
 	else
@@ -298,10 +306,10 @@ else
 fi
 
 ##########################################
-# Add Chrome and Atom to the dock
+# Add Chrome, Atom, and Slack to the dock
 ##########################################
 print PURPLE BOLD "Creating application shortcuts in the Dock..."
-print "For the sake of ease, this script will add Chrome and Atom into the dock."
+print "For the sake of ease, this script will add Chrome, Atom, and Slack into the dock."
 
 RESTART_DOCK=false
 
@@ -330,6 +338,21 @@ else
 		print GREEN "Atom was successfully added to the Dock!"
 	else
 		print RED "Atom was successfully added to the Dock!"
+
+		exit 1
+	fi
+fi
+
+if defaults read com.apple.dock persistent-apps | grep Slack > /dev/null ; then
+	print GREEN "Slack is already in the Dock."
+else
+	defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Slack.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+	RESTART_DOCK=true
+
+	if defaults read com.apple.dock persistent-apps | grep Slack > /dev/null ; then
+		print GREEN "Slack was successfully added to the Dock!"
+	else
+		print RED "Slack was successfully added to the Dock!"
 
 		exit 1
 	fi
@@ -469,10 +492,65 @@ print " - $($BLUE)$($BOLD)atom-beautify$($RESET) - Beautify HTML, CSS, JavaScrip
 print " - $($BLUE)$($BOLD)atom-wrap-in-tag$($RESET) - Simplest package for Atom that wraps tag around selection - similar functionality found on other editors like PhpStorm, SublimeText, TextMate etc."
 print " - $($BLUE)$($BOLD)file-icons$($RESET) - File-specific icons in Atom for improved visual grepping."
 
-apm install Sublime-Style-Column-Selection
-apm install atom-beautify
-apm install atom-wrap-in-tag
-apm install file-icons
+print "Sublime-Style-Column-Selection..."
+if apm list --installed --bare | Grep Sublime-Style-Column-Selection > /dev/null; then
+	print GREEN "Sublime-Style-Column-Selection is already installed!"
+else
+	apm install Sublime-Style-Column-Selection
+
+	if apm list --installed --bare | Grep Sublime-Style-Column-Selection > /dev/null; then
+		print GREEN "Sublime-Style-Column-Selection was successfully installed!"
+	else
+		print RED "Sublime-Style-Column-Selection was not successfully installed!"
+
+		exit 1
+	fi
+fi
+
+print "atom-beautify..."
+if apm list --installed --bare | Grep atom-beautify > /dev/null; then
+	print GREEN "atom-beautify is already installed!"
+else
+	apm install atom-beautify
+
+	if apm list --installed --bare | Grep atom-beautify > /dev/null; then
+		print GREEN "atom-beautify was successfully installed!"
+	else
+		print RED "atom-beautify was not successfully installed!"
+
+		exit 1
+	fi
+fi
+
+print "atom-wrap-in-tag..."
+if apm list --installed --bare | Grep atom-wrap-in-tag > /dev/null; then
+	print GREEN "atom-wrap-in-tag is already installed!"
+else
+	apm install atom-wrap-in-tag
+
+	if apm list --installed --bare | Grep atom-wrap-in-tag > /dev/null; then
+		print GREEN "atom-wrap-in-tag was successfully installed!"
+	else
+		print RED "atom-wrap-in-tag was not successfully installed!"
+
+		exit 1
+	fi
+fi
+
+print "file-icons..."
+if apm list --installed --bare | Grep file-icons > /dev/null; then
+	print GREEN "file-icons is already installed!"
+else
+	apm install file-icons
+
+	if apm list --installed --bare | Grep file-icons > /dev/null; then
+		print GREEN "file-icons was successfully installed!"
+	else
+		print RED "file-icons was not successfully installed!"
+
+		exit 1
+	fi
+fi
 
 ##########################################
 # Configure Github SSH key
